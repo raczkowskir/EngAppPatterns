@@ -8,7 +8,7 @@ public class State {
 	private State() {
 	}
 
-	public static synchronized State getInstance() {
+	public static State getInstance() {
 		if (instance == null) {
 			instance = new State();
 		}
@@ -18,7 +18,9 @@ public class State {
 
 	public int iterator = 0;
 	public String list = "";
-	public String txtEng = "";
-	public String txtPl = "";
+	public String StrTxtENG = "";
+	public String StrTxtPL = "";
 
 }
+
+//dodać brakujące klasy i przenieść baze do klasy SQLconnection !

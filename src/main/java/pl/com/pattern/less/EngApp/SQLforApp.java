@@ -20,12 +20,23 @@ public class SQLforApp {
 	// modifications for UNDO option (2)
 	// private Connection conn2;
 	private Connection conn;
-	private Statement stat;
+	Statement stat;
 	private int count;
 
 	// the constructor - responsible for getting connection with data
 	// and invoke method which creates tables
-	public SQLforApp() {
+	
+	private static SQLforApp instance;
+
+	public static SQLforApp getInstance() {
+		if (instance == null) {
+			instance = new SQLforApp();
+		}
+
+		return instance;
+	}
+	
+	private SQLforApp() {
 		try {
 			Class.forName(SQLforApp.DRIVER);
 		} catch (ClassNotFoundException e) {

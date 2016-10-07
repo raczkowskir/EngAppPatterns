@@ -26,6 +26,9 @@ public class E2 extends JFrame implements ItemListener {
 	 * separate words clear whole table browsing words typing translation by
 	 * your self and checking is it right
 	 */
+	// one object state for entire application
+	public State state = State.getInstance();
+
 	private JPanel contentPane;
 	private JTextArea txtENG;
 	private JTextArea txtPL;
@@ -47,7 +50,7 @@ public class E2 extends JFrame implements ItemListener {
 	private int volume = 0;
 	// object of SQLite data base - it will be store all data for this
 	// application
-	SQLforApp sqlForApp = new SQLforApp();
+	SQLforApp sqlForApp = SQLforApp.getInstance();
 	// Menu bar
 	JMenuBar menuBar;
 	// list for selecting table we want to use
@@ -180,6 +183,8 @@ public class E2 extends JFrame implements ItemListener {
 				} else {
 					iterator = 0;
 				}
+				//updating state object
+				state.iterator = iterator;
 				if (iterator == 0) {
 					txtENG.setText("");
 					txtPL.setText("");
@@ -208,7 +213,9 @@ public class E2 extends JFrame implements ItemListener {
 				} else {
 					iterator = volume;
 				}
-
+				//updating state object
+				state.iterator = iterator;
+				
 				if (iterator == 0) {
 					txtENG.setText("");
 					txtPL.setText("");
@@ -262,6 +269,9 @@ public class E2 extends JFrame implements ItemListener {
 		btnDelete.setIcon(new ImageIcon("C:\\Users\\Rafał\\EngAppDesktop\\EngApp\\buttons\\button (3).png"));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//updating state object 
+				state.StrTxtENG = txtENG.getText();
+								
 				sqlForApp.deleteWord(list, txtENG.getText());
 				if (iterator == volume) {
 					iterator = 1;
@@ -299,6 +309,11 @@ public class E2 extends JFrame implements ItemListener {
 			public void actionPerformed(ActionEvent e) {
 				String StrTxtENG = txtENG.getText();
 				String StrTxtPL = txtPL.getText();
+				
+				//updating state object 
+				state.StrTxtENG = StrTxtENG;
+				state.StrTxtPL = StrTxtPL;
+				
 				sqlForApp.insertWord(list, StrTxtENG, StrTxtPL);
 				System.out.println("dodano slowo do tabeli");
 				txtENG.setText("");
@@ -349,6 +364,8 @@ public class E2 extends JFrame implements ItemListener {
 		if (choice.getSelectedItem().equals("1")) {
 			System.out.println("Ustawiono: list1");
 			list = "list1";
+			// updating the state object
+			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
 			volume = sqlForApp.countWords(list);
@@ -359,6 +376,7 @@ public class E2 extends JFrame implements ItemListener {
 		if (choice.getSelectedItem().equals("2")) {
 			System.out.println("Ustawiono: list2");
 			list = "list2";
+			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
 			volume = sqlForApp.countWords(list);
@@ -369,6 +387,7 @@ public class E2 extends JFrame implements ItemListener {
 		if (choice.getSelectedItem().equals("3")) {
 			System.out.println("Ustawiono: list3");
 			list = "list3";
+			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
 			volume = sqlForApp.countWords(list);
@@ -379,6 +398,7 @@ public class E2 extends JFrame implements ItemListener {
 		if (choice.getSelectedItem().equals("4")) {
 			System.out.println("Ustawiono: list4");
 			list = "list4";
+			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
 			volume = sqlForApp.countWords(list);
@@ -389,6 +409,7 @@ public class E2 extends JFrame implements ItemListener {
 		if (choice.getSelectedItem().equals("5")) {
 			System.out.println("Ustawiono: list5");
 			list = "list5";
+			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
 			volume = sqlForApp.countWords(list);
