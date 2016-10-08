@@ -12,6 +12,8 @@ public class SQLforApp {
 	// This class do not contain its own view
 	// it is using for database managing
 
+	State state = State.getInstance();
+	
 	public static final String DRIVER = "org.sqlite.JDBC";
 	//modifications for UNDO option (1)
 	//public static final String DB_URL2 = "jdbc:sqlite:biblioteka2.db";
@@ -191,5 +193,17 @@ public class SQLforApp {
 
 		}
 		return count;
+	}
+	
+	//próba użycia polecenia 
+	public String next(){
+		// test - new patterns
+		Command  commandSelect = new CommandSelect();
+		Caller caller  = new Caller();
+		State state = State.getInstance();
+		caller.setCommand(commandSelect);
+		System.out.println("JAK TO ZADZIAŁA TO JESTEŚ MISTRZU!!! : "+ caller.order(state.list,"engWord",state.iterator));
+		
+		return caller.order(state.list,"engWord",state.iterator);
 	}
 }

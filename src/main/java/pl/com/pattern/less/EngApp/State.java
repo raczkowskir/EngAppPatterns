@@ -16,8 +16,8 @@ public class State {
 		return instance;
 	}
 
-	public int iterator = 0;
-	public String list = "";
+	public int iterator = 1;
+	public String list = "list1";
 	public String StrTxtENG = "";
 	public String StrTxtPL = "";
 

@@ -6,7 +6,18 @@ import java.sql.SQLException;
 public class CommandSelect extends Command {
 	
 	private SQLforApp sqlForApp = SQLforApp.getInstance();
-
+	
+	/*
+	String tableName="0";
+	String columnName="0";
+	int wordId = 0;
+	
+	public CommandSelect(String tableName, String columnName, int wordId){
+		this.columnName = columnName;
+		this.tableName = tableName;
+		this.wordId = wordId;
+	}
+*/
 	public String runIt(String tableName, String columnName, int wordId) {
 		String outcome = "";
 		System.out.println(columnName);
@@ -40,6 +51,7 @@ public class CommandSelect extends Command {
 		}
 
 		return outcome;
+	//	return "cokolwiek";
 	}
 
 	@Override

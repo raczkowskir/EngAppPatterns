@@ -190,9 +190,12 @@ public class E2 extends JFrame implements ItemListener {
 					txtPL.setText("");
 					prompt.setText("Table is empty!");
 				} else {
-					String resultSelectENG = sqlForApp.selectWord(list, "engWord", iterator);
-					txtENG.setText(resultSelectENG);
+					//proba użycia nowych obiektów
+					//String resultSelectENG = sqlForApp.selectWord(list, "engWord", iterator);
+					//txtENG.setText(resultSelectENG);
+					txtENG.setText(sqlForApp.next());
 					txtPL.setText("");
+					
 				}
 				// setting label which is showing current position in table
 				String label = iterator + "/" + volume;
