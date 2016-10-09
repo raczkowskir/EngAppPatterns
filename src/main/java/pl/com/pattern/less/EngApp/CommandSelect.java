@@ -72,4 +72,10 @@ public class CommandSelect extends Command {
 		return 0;
 	}
 
+	@Override
+	public boolean runIt(String a, boolean b) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

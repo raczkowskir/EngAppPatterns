@@ -110,7 +110,8 @@ public class E2 extends JFrame implements ItemListener {
 		System.out.println("utworzono tabele");
 
 		// the method which is counting total number of rows for current table
-		volume = sqlForApp.countWords(list);
+	//	volume = sqlForApp.countWords(list);
+		volume = sqlForApp.countWords();
 		System.out.println("oto label:" + iterator + "/" + volume);
 
 		// btn toE1
@@ -344,7 +345,8 @@ public class E2 extends JFrame implements ItemListener {
 		btnClearList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// the method which clear current table
-				sqlForApp.clearTable(list);
+			//	sqlForApp.clearTable(list);
+				sqlForApp.clearTab();
 				// setting label which is showing current position in table
 				volume = 0;
 				String label = iterator + "/" + volume;
@@ -355,7 +357,8 @@ public class E2 extends JFrame implements ItemListener {
 		});
 
 		/// counting volume
-		volume = sqlForApp.countWords(list);
+	//	volume = sqlForApp.countWords(list);
+		volume = sqlForApp.countWords();
 		// labelNUMBER
 		String label = iterator + "/" + volume;
 		lblNumber = new JLabel(label);
@@ -378,7 +381,9 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-			volume = sqlForApp.countWords(list);
+			//volume = sqlForApp.countWords(list);
+			volume = sqlForApp.countWords();
+			
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");
@@ -389,7 +394,8 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-			volume = sqlForApp.countWords(list);
+	//		volume = sqlForApp.countWords(list);
+			volume = sqlForApp.countWords();
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");
@@ -400,7 +406,8 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-			volume = sqlForApp.countWords(list);
+		//	volume = sqlForApp.countWords(list);
+			volume = sqlForApp.countWords();
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");
@@ -411,7 +418,8 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-			volume = sqlForApp.countWords(list);
+		//	volume = sqlForApp.countWords(list);
+			volume = sqlForApp.countWords();
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");
@@ -422,7 +430,8 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-			volume = sqlForApp.countWords(list);
+	//		volume = sqlForApp.countWords(list);
+			volume = sqlForApp.countWords();
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");

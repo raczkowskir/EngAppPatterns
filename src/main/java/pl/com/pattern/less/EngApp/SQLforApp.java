@@ -243,4 +243,22 @@ public class SQLforApp {
 
 		return caller.order(state.list, state.subString1, state.subString2);
 	}
+	public boolean clearTab(){
+
+		Command  commandClearTab = new CommandClearTab();
+		Caller caller  = new Caller();
+		State state = State.getInstance();
+		caller.setCommand(commandClearTab);
+
+		return caller.order(state.list, true);
+	}
+	public int countWords(){
+
+		Command  commandCountWords = new CommandCountWords();
+		Caller caller  = new Caller();
+		State state = State.getInstance();
+		caller.setCommand(commandCountWords);
+
+		return caller.order(state.list);
+	}
 }
