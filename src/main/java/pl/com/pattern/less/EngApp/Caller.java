@@ -2,7 +2,10 @@ package pl.com.pattern.less.EngApp;
 
 public class Caller {
 
-	// public State state = State.getInstance();
+	/*
+	 * this class is a part of Command design pattern it is used for calling
+	 * commands
+	 */
 
 	private Command command;
 
@@ -37,11 +40,11 @@ public class Caller {
 		return command.runIt(tableName, b);
 
 	}
-	
+
 	// count words
-		public int order(String tableName) {
+	public int order(String tableName) {
 
-			return command.runIt(tableName);
+		return command.runIt(tableName);
 
-		}
+	}
 }

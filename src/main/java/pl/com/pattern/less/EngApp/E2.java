@@ -26,10 +26,12 @@ public class E2 extends JFrame implements ItemListener {
 	 * separate words clear whole table browsing words typing translation by
 	 * your self and checking is it right
 	 */
-	// one object state for entire application
+	// one object state for entire application - contain a state of a few fields
+	// from this classes: E2 and E2_b
 	public State state = State.getInstance();
+	// object which open connection with data base
 	public SQLconnection sqlConnection = SQLconnection.getInstance();
-	
+
 	private JPanel contentPane;
 	private JTextArea txtENG;
 	private JTextArea txtPL;
@@ -49,9 +51,8 @@ public class E2 extends JFrame implements ItemListener {
 	private int iterator = 0;
 	// variable which is showing total volume of current table
 	private int volume = 0;
-	// object of SQLite data base - it will be store all data for this
-	// application
-	Facade sqlForApp = Facade.getInstance();
+	// object object which use all command objects
+	Facade facade = Facade.getInstance();
 	// Menu bar
 	JMenuBar menuBar;
 	// list for selecting table we want to use
@@ -111,8 +112,8 @@ public class E2 extends JFrame implements ItemListener {
 		System.out.println("utworzono tabele");
 
 		// the method which is counting total number of rows for current table
-	//	volume = sqlForApp.countWords(list);
-		volume = sqlForApp.countWords();
+		// volume = sqlForApp.countWords(list);
+		volume = facade.countWords();
 		System.out.println("oto label:" + iterator + "/" + volume);
 
 		// btn toE1
@@ -168,7 +169,7 @@ public class E2 extends JFrame implements ItemListener {
 				}
 			}
 		});
-		// NEXT/////////////////////////////////// done!
+		// NEXT///////////////////////////////////
 		btnNext = new JButton("");
 		btnNext.setIcon(new ImageIcon("C:\\Users\\Rafał\\EngAppDesktop\\EngApp\\buttons\\button (5).png"));
 		btnNext.setBounds(294, 101, 81, 38);
@@ -185,19 +186,15 @@ public class E2 extends JFrame implements ItemListener {
 				} else {
 					iterator = 0;
 				}
-				//updating state object
+				// updating state object
 				state.iterator = iterator;
 				if (iterator == 0) {
 					txtENG.setText("");
 					txtPL.setText("");
 					prompt.setText("Table is empty!");
 				} else {
-					//proba użycia nowych obiektów
-					//String resultSelectENG = sqlForApp.selectWord(list, "engWord", iterator);
-					//txtENG.setText(resultSelectENG);
-					txtENG.setText(sqlForApp.nextAndBack());
+					txtENG.setText(facade.nextAndBack());
 					txtPL.setText("");
-					
 				}
 				// setting label which is showing current position in table
 				String label = iterator + "/" + volume;
@@ -218,16 +215,15 @@ public class E2 extends JFrame implements ItemListener {
 				} else {
 					iterator = volume;
 				}
-				//updating state object
+				// updating state object
 				state.iterator = iterator;
-				
+
 				if (iterator == 0) {
 					txtENG.setText("");
 					txtPL.setText("");
 					prompt.setText("Table is empty!");
 				} else {
-				//	String resultSelectENG = sqlForApp.selectWord(list, "engWord", iterator);
-					txtENG.setText(sqlForApp.nextAndBack());
+					txtENG.setText(facade.nextAndBack());
 					txtPL.setText("");
 				}
 
@@ -247,7 +243,7 @@ public class E2 extends JFrame implements ItemListener {
 				if (volume != 0) {
 					noOfAnswers = noOfAnswers + 1;
 					System.out.println(noOfAnswers + " -liczba wszystkich odpowiedzi");
-					String resultSelect = sqlForApp.check();
+					String resultSelect = facade.check();
 					if (resultSelect.equals(txtPL.getText())) {
 						prompt.setText("WELL DONE !");
 						txtPL.setForeground(Color.GREEN);
@@ -259,11 +255,9 @@ public class E2 extends JFrame implements ItemListener {
 						// below code lets move words to next line if we have
 						// more than 15 words
 						if (noOfBadAns == 15) {
-							//wrongAnswers = wrongAnswers + sqlForApp.selectWord(list, "engWord", iterator) + ",<br>";
-							wrongAnswers = wrongAnswers + sqlForApp.check() + ",<br>";
+							wrongAnswers = wrongAnswers + facade.check() + ",<br>";
 						} else {
-							//wrongAnswers = wrongAnswers + sqlForApp.selectWord(list, "engWord", iterator) + ", ";
-							wrongAnswers = wrongAnswers + sqlForApp.check() + ", ";
+							wrongAnswers = wrongAnswers + facade.check() + ", ";
 						}
 						System.out.println(wrongAnswers + " -to są złe odpowiedzi");
 					}
@@ -271,16 +265,16 @@ public class E2 extends JFrame implements ItemListener {
 				}
 			}
 		});
-		// DELETE/////////////////////////////////// done !!
+		// DELETE///////////////////////////////////
 		btnDelete = new JButton("");
 		btnDelete.setIcon(new ImageIcon("C:\\Users\\Rafał\\EngAppDesktop\\EngApp\\buttons\\button (3).png"));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//updating state object 
+				// updating state object
 				state.StrTxtENG = txtENG.getText();
-								
-				//sqlForApp.deleteWord(list, txtENG.getText());
-				sqlForApp.delete();
+
+				// sqlForApp.deleteWord(list, txtENG.getText());
+				facade.delete();
 				if (iterator == volume) {
 					iterator = 1;
 				}
@@ -289,8 +283,7 @@ public class E2 extends JFrame implements ItemListener {
 					volume--;
 				}
 				if (volume != 0) {
-				//	txtENG.setText(sqlForApp.selectWord(list, "engWord", iterator));
-					txtENG.setText(sqlForApp.nextAndBack());
+					txtENG.setText(facade.nextAndBack());
 
 				} else {
 					txtENG.setText("");
@@ -300,16 +293,12 @@ public class E2 extends JFrame implements ItemListener {
 
 				String label = iterator + "/" + volume;
 				lblNumber.setText(label);
-
-				/////// I'm am not sure the below is necessary here
-				/////// //////////////////////
-			//	sqlForApp.createTables();
 			}
 		});
 		btnDelete.setBounds(69, 155, 81, 38);
 		contentPane.add(btnDelete);
 
-		// ADD ///////////////////////////////////////////////// done!!
+		// ADD /////////////////////////////////////////////////
 		btnAdd = new JButton("");
 		btnAdd.setIcon(new ImageIcon("C:\\Users\\Rafał\\EngAppDesktop\\EngApp\\buttons\\button (2).png"));
 		btnAdd.setBounds(69, 101, 81, 38);
@@ -318,15 +307,13 @@ public class E2 extends JFrame implements ItemListener {
 			public void actionPerformed(ActionEvent e) {
 				String StrTxtENG = txtENG.getText();
 				String StrTxtPL = txtPL.getText();
-				
-				//updating state object 
+
+				// updating state object
 				state.StrTxtENG = StrTxtENG;
 				state.StrTxtPL = StrTxtPL;
-				
-				//usunąć
-			//	sqlForApp.insertWord(list, StrTxtENG, StrTxtPL);
-				sqlForApp.insert();
-				
+				// the method which add words to table
+				facade.insert();
+
 				System.out.println("dodano slowo do tabeli");
 				txtENG.setText("");
 				txtPL.setText("");
@@ -346,8 +333,7 @@ public class E2 extends JFrame implements ItemListener {
 		btnClearList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// the method which clear current table
-			//	sqlForApp.clearTable(list);
-				sqlForApp.cleanTab();
+				facade.cleanTab();
 				// setting label which is showing current position in table
 				volume = 0;
 				String label = iterator + "/" + volume;
@@ -358,8 +344,8 @@ public class E2 extends JFrame implements ItemListener {
 		});
 
 		/// counting volume
-	//	volume = sqlForApp.countWords(list);
-		volume = sqlForApp.countWords();
+		// volume = sqlForApp.countWords(list);
+		volume = facade.countWords();
 		// labelNUMBER
 		String label = iterator + "/" + volume;
 		lblNumber = new JLabel(label);
@@ -382,9 +368,8 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-			//volume = sqlForApp.countWords(list);
-			volume = sqlForApp.countWords();
-			
+			volume = facade.countWords();
+
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");
@@ -395,8 +380,7 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-	//		volume = sqlForApp.countWords(list);
-			volume = sqlForApp.countWords();
+			volume = facade.countWords();
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");
@@ -407,8 +391,7 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-		//	volume = sqlForApp.countWords(list);
-			volume = sqlForApp.countWords();
+			volume = facade.countWords();
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");
@@ -419,8 +402,7 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-		//	volume = sqlForApp.countWords(list);
-			volume = sqlForApp.countWords();
+			volume = facade.countWords();
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");
@@ -431,8 +413,7 @@ public class E2 extends JFrame implements ItemListener {
 			state.list = list;
 			// setting label, volume and iterator for new list
 			iterator = 0;
-	//		volume = sqlForApp.countWords(list);
-			volume = sqlForApp.countWords();
+			volume = facade.countWords();
 			String label = iterator + "/" + volume;
 			lblNumber.setText(label);
 			prompt.setText("");

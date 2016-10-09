@@ -2,20 +2,24 @@ package pl.com.pattern.less.EngApp;
 
 public abstract class Command {
 
-// for delete command
-public abstract boolean runIt(String a, String b);
+	/*
+	 * this is a parent abstract class for all commands classes it made them to
+	 * implement method "runIt"
+	 */
 
-//for select command (back/next/check)
-public abstract String runIt(String a, String b, int c);
+	// for delete command
+	public abstract boolean runIt(String a, String b);
 
-//for insert command
-public abstract boolean runIt(String a, String b, String c);
-//for count command
-public abstract int runIt(String a);
+	// for select command (back/next/check)
+	public abstract String runIt(String a, String b, int c);
 
-//for clearTable command (second parameter is never used)
-public abstract boolean runIt(String a, boolean b);
+	// for insert command
+	public abstract boolean runIt(String a, String b, String c);
+
+	// for count command
+	public abstract int runIt(String a);
+
+	// for clearTable command (second parameter is never used)
+	public abstract boolean runIt(String a, boolean b);
 
 }
-
-

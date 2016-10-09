@@ -2,8 +2,11 @@ package pl.com.pattern.less.EngApp;
 
 import java.sql.SQLException;
 
-public class CommandDelete extends Command{
-	
+public class CommandDelete extends Command {
+	/*
+	 * This is a concrete command - for deleting a single row from a table
+	 * 
+	 */
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
 
 	public boolean runIt(String tableName, String engWord) {
@@ -17,12 +20,6 @@ public class CommandDelete extends Command{
 		}
 		return true;
 	}
-//usunąć
-	
-	/*public void runIt(String tableName, String engWord) {
-		deleteWord(tableName, engWord);
-
-	}*/
 
 	@Override
 	public boolean runIt(String a, String b, String c) {
@@ -34,7 +31,7 @@ public class CommandDelete extends Command{
 	public String runIt(String a, String b, int c) {
 		return "";
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

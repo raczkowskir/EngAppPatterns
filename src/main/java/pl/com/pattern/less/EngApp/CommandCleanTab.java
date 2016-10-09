@@ -2,15 +2,18 @@ package pl.com.pattern.less.EngApp;
 
 import java.sql.SQLException;
 
-public class CommandCleanTab extends Command{
-	
+public class CommandCleanTab extends Command {
+	/*
+	 * This is a concrete command - for deleting all rows from table
+	 * 
+	 */
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
-	
+
 	public boolean runIt(String tableName, boolean b) {
 		String createList = "CREATE TABLE IF NOT EXISTS " + tableName
 				+ " (id_word INTEGER PRIMARY KEY AUTOINCREMENT, engWord varchar(255), plWord varchar(255))";
 		try {
-			sqlConnection.stat.execute("DROP TABLE " + tableName); 
+			sqlConnection.stat.execute("DROP TABLE " + tableName);
 			sqlConnection.stat.execute(createList);
 			System.out.println("Wyczyszczono tabele: " + tableName);
 

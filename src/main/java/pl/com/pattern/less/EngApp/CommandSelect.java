@@ -4,20 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CommandSelect extends Command {
-	//usunąć
-//	private Facade sqlForApp = Facade.getInstance();
-	private SQLconnection sqlConnection = SQLconnection.getInstance();
 	/*
-	String tableName="0";
-	String columnName="0";
-	int wordId = 0;
-	
-	public CommandSelect(String tableName, String columnName, int wordId){
-		this.columnName = columnName;
-		this.tableName = tableName;
-		this.wordId = wordId;
-	}
-*/
+	 * This is a concrete command - for selecting a row from the table it is
+	 * used for functions: back, next, check
+	 */
+
+	private SQLconnection sqlConnection = SQLconnection.getInstance();
+
 	public String runIt(String tableName, String columnName, int wordId) {
 		String outcome = "";
 		System.out.println(columnName);
@@ -51,13 +44,12 @@ public class CommandSelect extends Command {
 		}
 
 		return outcome;
-	//	return "cokolwiek";
 	}
 
 	@Override
 	public boolean runIt(String a, String b) {
 		// TODO Auto-generated method stub
-			return true;
+		return true;
 	}
 
 	@Override

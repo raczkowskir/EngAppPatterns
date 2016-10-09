@@ -5,8 +5,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CommandCountWords extends Command {
+	/*
+	 * This is a concrete command - for counting how many rows is in the table
+	 * 
+	 */
 	int count = 0;
-	
+
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
 
 	public int runIt(String tableName) {
@@ -53,5 +57,5 @@ public class CommandCountWords extends Command {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 }

@@ -2,7 +2,10 @@ package pl.com.pattern.less.EngApp;
 
 public class State {
 
-	// this class is a singleton
+	/*This class contain state of a few fields from class E2 and E2_b
+	 * it is use by all commands classes 
+	 *  this class is a singleton
+	 */
 	private static State instance;
 
 	private State() {
@@ -26,5 +29,3 @@ public class State {
 	public String subString1 = "";
 	public String subString2 = "";
 }
-
-//dodać brakujące klasy i przenieść baze do klasy SQLconnection !

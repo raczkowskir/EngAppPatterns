@@ -3,15 +3,17 @@ package pl.com.pattern.less.EngApp;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CommandInsert extends Command{
-	
+public class CommandInsert extends Command {
+	/*
+	 * This is a concrete command - for inserting a single row into a table
+	 * 
+	 */
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
 
-	//problemy z liczeniem słow po zamknieciu programu licznik sie zeruje
-	//mimo ze slowa dalej znajduja sie w tabeli 
 	public boolean runIt(String tableName, String engWord, String plWord) {
 		try {
-			PreparedStatement prepStmt = sqlConnection.conn.prepareStatement("insert into " + tableName + " values (NULL, ?, ?);");
+			PreparedStatement prepStmt = sqlConnection.conn
+					.prepareStatement("insert into " + tableName + " values (NULL, ?, ?);");
 
 			prepStmt.setString(1, engWord);
 			prepStmt.setString(2, plWord);
@@ -24,11 +26,11 @@ public class CommandInsert extends Command{
 
 		return true;
 	}
-	
+
 	@Override
 	public boolean runIt(String a, String b) {
 		// TODO Auto-generated method stub
-	return true;	
+		return true;
 	}
 
 	@Override

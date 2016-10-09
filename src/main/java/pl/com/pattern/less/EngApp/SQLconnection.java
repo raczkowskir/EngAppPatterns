@@ -6,10 +6,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLconnection {
-	
+
+	/*
+	 * the Class which provide connection with database create also all tables
+	 * it is a singleton
+	 */
+
 	public static final String DRIVER = "org.sqlite.JDBC";
-	//modifications for UNDO option (1)
-	//public static final String DB_URL2 = "jdbc:sqlite:biblioteka2.db";
+	// modifications for UNDO option (1)
+	// public static final String DB_URL2 = "jdbc:sqlite:biblioteka2.db";
 	public static final String DB_URL = "jdbc:sqlite:biblioteka.db";
 
 	// modifications for UNDO option (2)
@@ -17,9 +22,7 @@ public class SQLconnection {
 	Connection conn;
 	Statement stat;
 
-	// the constructor - responsible for getting connection with data
-	// and invoke method which creates tables
-	
+	// singleton
 	private static SQLconnection instance;
 
 	public static SQLconnection getInstance() {
@@ -29,7 +32,9 @@ public class SQLconnection {
 
 		return instance;
 	}
-	
+
+	// the constructor - responsible for getting connection with data
+	// and invoke method which creates tables
 	private SQLconnection() {
 		try {
 			Class.forName(SQLconnection.DRIVER);
@@ -40,18 +45,19 @@ public class SQLconnection {
 
 		try {
 			// modifications for UNDO option (3)
-			//conn2 = DriverManager.getConnection(DB_URL2);
+			// conn2 = DriverManager.getConnection(DB_URL2);
 			conn = DriverManager.getConnection(DB_URL);
 			// modifications for UNDO option (4)
-			//below should to be set before all DO command
-			//conn2 = conn;
-			//stat = conn.createStatement();
-			//below should to be set before all UNDO command
-			//conn = conn2;
-			//stat = conn.createStatement();
-			//UNDO will be work for Add, Delete and Clear table options
-			//it will have its own button and prompt: "The amendments were withdrawn."			
-			
+			// below should to be set before all DO command
+			// conn2 = conn;
+			// stat = conn.createStatement();
+			// below should to be set before all UNDO command
+			// conn = conn2;
+			// stat = conn.createStatement();
+			// UNDO will be work for Add, Delete and Clear table options
+			// it will have its own button and prompt: "The amendments were
+			// withdrawn."
+
 			stat = conn.createStatement();
 
 		} catch (SQLException e) {
@@ -61,6 +67,7 @@ public class SQLconnection {
 
 		createTables();
 	}
+
 	public boolean createTables() {
 		String createList1 = "CREATE TABLE IF NOT EXISTS list1 (id_word INTEGER PRIMARY KEY AUTOINCREMENT, engWord varchar(255), plWord varchar(255))";
 		String createList2 = "CREATE TABLE IF NOT EXISTS list2 (id_word INTEGER PRIMARY KEY AUTOINCREMENT, engWord varchar(255), plWord varchar(255))";
@@ -82,5 +89,5 @@ public class SQLconnection {
 		}
 		return true;
 	}
-	
+
 }
