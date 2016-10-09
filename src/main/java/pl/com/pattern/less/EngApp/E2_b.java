@@ -45,7 +45,9 @@ public class E2_b extends JFrame implements ItemListener {
 	String StrInput[] = new String[11];
 	// table for substrings input
 	String subString1[] = new String[5];
-
+	private State state = State.getInstance();
+	
+	
 	public E2_b() {
 		setTitle("EngApp");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,30 +131,35 @@ public class E2_b extends JFrame implements ItemListener {
 			sqlTableName = "list1";
 			System.out.println("Wybrano tabele list1");
 			lblInformation.setText("");
+			state.listE2b = sqlTableName;
 		}
 		if (choice.getSelectedItem().equals("Table: 2 (list2)")) {
 			fileName = "list2.csv";
 			sqlTableName = "list2";
 			System.out.println("Wybrano tabele list2");
 			lblInformation.setText("");
+			state.listE2b = sqlTableName;
 		}
 		if (choice.getSelectedItem().equals("Table: 3 (list3)")) {
 			fileName = "list3.csv";
 			sqlTableName = "list3";
 			System.out.println("Wybrano tabele list3");
 			lblInformation.setText("");
+			state.listE2b = sqlTableName;
 		}
 		if (choice.getSelectedItem().equals("Table: 4 (list4)")) {
 			fileName = "list4.csv";
 			sqlTableName = "list4";
 			System.out.println("Wybrano tabele list4");
 			lblInformation.setText("");
+			state.listE2b = sqlTableName;
 		}
 		if (choice.getSelectedItem().equals("Table: 5 (list5)")) {
 			fileName = "list5.csv";
 			sqlTableName = "list5";
 			System.out.println("Wybrano tabele list5");
 			lblInformation.setText("");
+			state.listE2b = sqlTableName;
 		}
 
 	}
@@ -197,8 +204,18 @@ public class E2_b extends JFrame implements ItemListener {
 
 			subString1[1] = StrInput[i].substring(position1 + 1, StrInput[i].length());
 			// System.out.println(subString1[1]);
-
-			E1.frame1.frame2.sqlForApp.insertWord(sqlTableName, subString1[0], subString1[1]);
+			
+			state.subString1 = subString1[0];
+			state.subString2 = subString1[1];
+		//	System.out.println(state.subString1 +" "+ subString1[0]+" "+state.subString2 + subString1[1]);
+		//	E1.frame1.frame2.sqlForApp.insertWord(sqlTableName, subString1[0], subString1[1]);
+			
+		//	SQLforApp sqlForApp = SQLforApp.getInstance();
+		//	sqlForApp.insertWord(sqlTableName, subString1[0], subString1[1]);
+		//	Command commandInsert = new CommandInsert();
+		//	commandInsert.runIt(sqlTableName, subString1[0], subString1[1]);
+			SQLforApp sqlForApp = SQLforApp.getInstance();
+			sqlForApp.insertE2_b();
 		}
 		
 	}

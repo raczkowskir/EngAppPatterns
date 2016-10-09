@@ -166,7 +166,7 @@ public class E2 extends JFrame implements ItemListener {
 				}
 			}
 		});
-		// NEXT///////////////////////////////////
+		// NEXT/////////////////////////////////// done!
 		btnNext = new JButton("");
 		btnNext.setIcon(new ImageIcon("C:\\Users\\Rafał\\EngAppDesktop\\EngApp\\buttons\\button (5).png"));
 		btnNext.setBounds(294, 101, 81, 38);
@@ -193,7 +193,7 @@ public class E2 extends JFrame implements ItemListener {
 					//proba użycia nowych obiektów
 					//String resultSelectENG = sqlForApp.selectWord(list, "engWord", iterator);
 					//txtENG.setText(resultSelectENG);
-					txtENG.setText(sqlForApp.next());
+					txtENG.setText(sqlForApp.nextAndBack());
 					txtPL.setText("");
 					
 				}
@@ -224,8 +224,8 @@ public class E2 extends JFrame implements ItemListener {
 					txtPL.setText("");
 					prompt.setText("Table is empty!");
 				} else {
-					String resultSelectENG = sqlForApp.selectWord(list, "engWord", iterator);
-					txtENG.setText(resultSelectENG);
+				//	String resultSelectENG = sqlForApp.selectWord(list, "engWord", iterator);
+					txtENG.setText(sqlForApp.nextAndBack());
 					txtPL.setText("");
 				}
 
@@ -235,7 +235,7 @@ public class E2 extends JFrame implements ItemListener {
 			}
 		});
 
-		/// CHECK///////////////////////////////////
+		/// CHECK///////////////////////////////////done !!
 		btnCheck = new JButton("");
 		btnCheck.setIcon(new ImageIcon("C:\\Users\\Rafał\\EngAppDesktop\\EngApp\\buttons\\button (6).png"));
 		btnCheck.setBounds(294, 155, 81, 38);
@@ -245,7 +245,7 @@ public class E2 extends JFrame implements ItemListener {
 				if (volume != 0) {
 					noOfAnswers = noOfAnswers + 1;
 					System.out.println(noOfAnswers + " -liczba wszystkich odpowiedzi");
-					String resultSelect = sqlForApp.selectWord(list, "plWord", iterator);
+					String resultSelect = sqlForApp.check();
 					if (resultSelect.equals(txtPL.getText())) {
 						prompt.setText("WELL DONE !");
 						txtPL.setForeground(Color.GREEN);
@@ -257,9 +257,11 @@ public class E2 extends JFrame implements ItemListener {
 						// below code lets move words to next line if we have
 						// more than 15 words
 						if (noOfBadAns == 15) {
-							wrongAnswers = wrongAnswers + sqlForApp.selectWord(list, "engWord", iterator) + ",<br>";
+							//wrongAnswers = wrongAnswers + sqlForApp.selectWord(list, "engWord", iterator) + ",<br>";
+							wrongAnswers = wrongAnswers + sqlForApp.check() + ",<br>";
 						} else {
-							wrongAnswers = wrongAnswers + sqlForApp.selectWord(list, "engWord", iterator) + ", ";
+							//wrongAnswers = wrongAnswers + sqlForApp.selectWord(list, "engWord", iterator) + ", ";
+							wrongAnswers = wrongAnswers + sqlForApp.check() + ", ";
 						}
 						System.out.println(wrongAnswers + " -to są złe odpowiedzi");
 					}
@@ -267,7 +269,7 @@ public class E2 extends JFrame implements ItemListener {
 				}
 			}
 		});
-		// DELETE///////////////////////////////////
+		// DELETE/////////////////////////////////// done !!
 		btnDelete = new JButton("");
 		btnDelete.setIcon(new ImageIcon("C:\\Users\\Rafał\\EngAppDesktop\\EngApp\\buttons\\button (3).png"));
 		btnDelete.addActionListener(new ActionListener() {
@@ -275,7 +277,8 @@ public class E2 extends JFrame implements ItemListener {
 				//updating state object 
 				state.StrTxtENG = txtENG.getText();
 								
-				sqlForApp.deleteWord(list, txtENG.getText());
+				//sqlForApp.deleteWord(list, txtENG.getText());
+				sqlForApp.delete();
 				if (iterator == volume) {
 					iterator = 1;
 				}
@@ -284,7 +287,8 @@ public class E2 extends JFrame implements ItemListener {
 					volume--;
 				}
 				if (volume != 0) {
-					txtENG.setText(sqlForApp.selectWord(list, "engWord", iterator));
+				//	txtENG.setText(sqlForApp.selectWord(list, "engWord", iterator));
+					txtENG.setText(sqlForApp.nextAndBack());
 
 				} else {
 					txtENG.setText("");
@@ -297,13 +301,13 @@ public class E2 extends JFrame implements ItemListener {
 
 				/////// I'm am not sure the below is necessary here
 				/////// //////////////////////
-				sqlForApp.createTables();
+			//	sqlForApp.createTables();
 			}
 		});
 		btnDelete.setBounds(69, 155, 81, 38);
 		contentPane.add(btnDelete);
 
-		// ADD /////////////////////////////////////////////////
+		// ADD ///////////////////////////////////////////////// done!!
 		btnAdd = new JButton("");
 		btnAdd.setIcon(new ImageIcon("C:\\Users\\Rafał\\EngAppDesktop\\EngApp\\buttons\\button (2).png"));
 		btnAdd.setBounds(69, 101, 81, 38);
@@ -317,7 +321,10 @@ public class E2 extends JFrame implements ItemListener {
 				state.StrTxtENG = StrTxtENG;
 				state.StrTxtPL = StrTxtPL;
 				
-				sqlForApp.insertWord(list, StrTxtENG, StrTxtPL);
+				//usunąć
+			//	sqlForApp.insertWord(list, StrTxtENG, StrTxtPL);
+				sqlForApp.insert();
+				
 				System.out.println("dodano slowo do tabeli");
 				txtENG.setText("");
 				txtPL.setText("");

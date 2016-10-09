@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CommandSelect extends Command {
-	
-	private SQLforApp sqlForApp = SQLforApp.getInstance();
-	
+	//usunąć
+//	private SQLforApp sqlForApp = SQLforApp.getInstance();
+	private SQLconnection sqlConnection = SQLconnection.getInstance();
 	/*
 	String tableName="0";
 	String columnName="0";
@@ -24,7 +24,7 @@ public class CommandSelect extends Command {
 		try {
 			// ResultSet result = stat.executeQuery("SELECT * FROM "+tableName+"
 			// WHERE id_word='"+wordId+"'");
-			ResultSet result = sqlForApp.stat.executeQuery("SELECT * FROM " + tableName);
+			ResultSet result = sqlConnection.stat.executeQuery("SELECT * FROM " + tableName);
 
 			// the loop which help set cursor on current row
 			// - setting current row by using result.absolute(int rowNuber); is
@@ -55,15 +55,15 @@ public class CommandSelect extends Command {
 	}
 
 	@Override
-	public void runIt(String a, String b) {
+	public boolean runIt(String a, String b) {
 		// TODO Auto-generated method stub
-
+			return true;
 	}
 
 	@Override
-	public void runIt(String a, String b, String c) {
+	public boolean runIt(String a, String b, String c) {
 		// TODO Auto-generated method stub
-
+		return true;
 	}
 
 	@Override

@@ -98,7 +98,7 @@ public class SQLforApp {
 		String createList = "CREATE TABLE IF NOT EXISTS " + tableName
 				+ " (id_word INTEGER PRIMARY KEY AUTOINCREMENT, engWord varchar(255), plWord varchar(255))";
 		try {
-			stat.execute("DROP TABLE " + tableName);
+			stat.execute("DROP TABLE " + tableName); 
 			stat.execute(createList);
 			System.out.println("Wyczyszczono tabele: " + tableName);
 
@@ -194,16 +194,53 @@ public class SQLforApp {
 		}
 		return count;
 	}
-	
-	//próba użycia polecenia 
-	public String next(){
-		// test - new patterns
+
+	public String nextAndBack(){
+
 		Command  commandSelect = new CommandSelect();
 		Caller caller  = new Caller();
 		State state = State.getInstance();
 		caller.setCommand(commandSelect);
-		System.out.println("JAK TO ZADZIAŁA TO JESTEŚ MISTRZU!!! : "+ caller.order(state.list,"engWord",state.iterator));
-		
+				
 		return caller.order(state.list,"engWord",state.iterator);
+	}
+	
+	public String check(){
+
+		Command  commandSelect = new CommandSelect();
+		Caller caller  = new Caller();
+		State state = State.getInstance();
+		caller.setCommand(commandSelect);
+				
+		return caller.order(state.list,"plWord",state.iterator);
+	}
+	public boolean delete(){
+
+		Command  commandDelete = new CommandDelete();
+		Caller caller  = new Caller();
+		State state = State.getInstance();
+		caller.setCommand(commandDelete);
+				
+		return caller.order(state.list, state.StrTxtENG);
+	}
+	
+	public boolean insert(){
+
+		Command  commandInsert = new CommandInsert();
+		Caller caller  = new Caller();
+		State state = State.getInstance();
+		caller.setCommand(commandInsert);
+
+		return caller.order(state.list, state.StrTxtENG, state.StrTxtPL);
+	}
+	
+	public boolean insertE2_b(){
+
+		Command  commandInsert = new CommandInsert();
+		Caller caller  = new Caller();
+		State state = State.getInstance();
+		caller.setCommand(commandInsert);
+
+		return caller.order(state.list, state.subString1, state.subString2);
 	}
 }

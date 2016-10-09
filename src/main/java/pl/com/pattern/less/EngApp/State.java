@@ -15,12 +15,16 @@ public class State {
 
 		return instance;
 	}
-
+	//state for E2
 	public int iterator = 1;
 	public String list = "list1";
 	public String StrTxtENG = "";
 	public String StrTxtPL = "";
 
+	//state for E2_b
+	public String listE2b = "list1";
+	public String subString1 = "";
+	public String subString2 = "";
 }
 
 //dodać brakujące klasy i przenieść baze do klasy SQLconnection !
