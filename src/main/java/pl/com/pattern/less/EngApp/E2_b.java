@@ -210,11 +210,11 @@ public class E2_b extends JFrame implements ItemListener {
 		//	System.out.println(state.subString1 +" "+ subString1[0]+" "+state.subString2 + subString1[1]);
 		//	E1.frame1.frame2.sqlForApp.insertWord(sqlTableName, subString1[0], subString1[1]);
 			
-		//	SQLforApp sqlForApp = SQLforApp.getInstance();
+		//	Facade sqlForApp = Facade.getInstance();
 		//	sqlForApp.insertWord(sqlTableName, subString1[0], subString1[1]);
 		//	Command commandInsert = new CommandInsert();
 		//	commandInsert.runIt(sqlTableName, subString1[0], subString1[1]);
-			SQLforApp sqlForApp = SQLforApp.getInstance();
+			Facade sqlForApp = Facade.getInstance();
 			sqlForApp.insertE2_b();
 		}
 		

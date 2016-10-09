@@ -32,7 +32,7 @@ public class SQLconnection {
 	
 	private SQLconnection() {
 		try {
-			Class.forName(SQLforApp.DRIVER);
+			Class.forName(SQLconnection.DRIVER);
 		} catch (ClassNotFoundException e) {
 			System.err.println("Brak sterownika JDBC");
 			e.printStackTrace();

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class CommandSelect extends Command {
 	//usunąć
-//	private SQLforApp sqlForApp = SQLforApp.getInstance();
+//	private Facade sqlForApp = Facade.getInstance();
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
 	/*
 	String tableName="0";

@@ -2,7 +2,7 @@ package pl.com.pattern.less.EngApp;
 
 import java.sql.SQLException;
 
-public class CommandClearTab extends Command{
+public class CommandCleanTab extends Command{
 	
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
 	

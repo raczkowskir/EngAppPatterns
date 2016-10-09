@@ -28,7 +28,8 @@ public class E2 extends JFrame implements ItemListener {
 	 */
 	// one object state for entire application
 	public State state = State.getInstance();
-
+	public SQLconnection sqlConnection = SQLconnection.getInstance();
+	
 	private JPanel contentPane;
 	private JTextArea txtENG;
 	private JTextArea txtPL;
@@ -50,7 +51,7 @@ public class E2 extends JFrame implements ItemListener {
 	private int volume = 0;
 	// object of SQLite data base - it will be store all data for this
 	// application
-	SQLforApp sqlForApp = SQLforApp.getInstance();
+	Facade sqlForApp = Facade.getInstance();
 	// Menu bar
 	JMenuBar menuBar;
 	// list for selecting table we want to use
@@ -106,7 +107,7 @@ public class E2 extends JFrame implements ItemListener {
 		choice.addItemListener(this);
 
 		// creating tables
-		sqlForApp.createTables();
+		sqlConnection.createTables();
 		System.out.println("utworzono tabele");
 
 		// the method which is counting total number of rows for current table
@@ -346,7 +347,7 @@ public class E2 extends JFrame implements ItemListener {
 			public void actionPerformed(ActionEvent e) {
 				// the method which clear current table
 			//	sqlForApp.clearTable(list);
-				sqlForApp.clearTab();
+				sqlForApp.cleanTab();
 				// setting label which is showing current position in table
 				volume = 0;
 				String label = iterator + "/" + volume;
