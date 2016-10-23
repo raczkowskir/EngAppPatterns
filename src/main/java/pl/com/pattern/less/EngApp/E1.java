@@ -17,8 +17,6 @@ public class E1 extends JFrame {
 	// between view E2 - browsing words
 	// or view E2_b - adding entire lists to tables
 
-	// the method for debuging
-
 	private JPanel contentPane;
 	static final E1 frame1 = new E1();
 	static E2 frame2 = new E2();
