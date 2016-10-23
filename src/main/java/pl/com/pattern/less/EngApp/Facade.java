@@ -30,60 +30,73 @@ public class Facade {
 
 	public String nextAndBack() {
 
-		Command commandSelect = new CommandSelect();
+		Command commandSelect = new CommandSelect(state.list, "engWord", state.StrTxtENG, state.StrTxtPL,
+				state.subString1, state.subString2, state.iterator);
 		caller.setCommand(commandSelect);
 
-		return caller.order(state.list, "engWord", state.iterator);
+		return caller.order();
 	}
 
 	public String check() {
 
-		Command commandSelect = new CommandSelect();
+		Command commandSelect = new CommandSelect(state.list, "plWord", state.StrTxtENG, state.StrTxtPL,
+				state.subString1, state.subString2, state.iterator);
+		;
 		caller.setCommand(commandSelect);
 
-		return caller.order(state.list, "plWord", state.iterator);
+		return caller.order();
 	}
 
-	public boolean delete() {
+	public String delete() {
 
-		Command commandDelete = new CommandDelete();
+		Command commandDelete = new CommandDelete(state.list, "engWord", state.StrTxtENG, state.StrTxtPL,
+				state.subString1, state.subString2, state.iterator);
+		;
 		caller.setCommand(commandDelete);
 
-		return caller.order(state.list, state.StrTxtENG);
+		return caller.order();
 	}
 
-	public boolean insert() {
+	public String insert() {
 
-		Command commandInsert = new CommandInsert();
+		Command commandInsert = new CommandInsert(state.list, "engWord", state.StrTxtENG, state.StrTxtPL,
+				state.subString1, state.subString2, state.iterator);
+		;
 		caller.setCommand(commandInsert);
 
-		return caller.order(state.list, state.StrTxtENG, state.StrTxtPL);
+		return caller.order();
 	}
 
 	// the method for function "add table" for Class E2_b
-	public boolean insertE2_b() {
+	public String insertE2_b() {
 
-		Command commandInsert = new CommandInsert();
+		Command commandInsert = new CommandInsert(state.list, "engWord", state.subString1, state.subString2,
+				state.StrTxtENG, state.StrTxtPL, state.iterator);
 		caller.setCommand(commandInsert);
 
-		return caller.order(state.list, state.subString1, state.subString2);
+		return caller.order();
 	}
 
 	// the method which deletes table and creates again the empty one
-	public boolean cleanTab() {
+	public String cleanTab() {
 
-		Command commandCleanTab = new CommandCleanTab();
+		Command commandCleanTab = new CommandCleanTab(state.list, "engWord", state.StrTxtENG, state.StrTxtPL,
+				state.subString1, state.subString2, state.iterator);
 		caller.setCommand(commandCleanTab);
 
-		return caller.order(state.list, true);
+		return caller.order();
 	}
 
 	// the method for checking how many rows the table have
 	public int countWords() {
 
-		Command commandCountWords = new CommandCountWords();
+		Command commandCountWords = new CommandCountWords(state.list, "engWord", state.StrTxtENG, state.StrTxtPL,
+				state.subString1, state.subString2, state.iterator);
+		;
 		caller.setCommand(commandCountWords);
 
-		return caller.order(state.list);
+		int returnAsInt = Integer.valueOf(caller.order());
+		return returnAsInt;
+
 	}
 }

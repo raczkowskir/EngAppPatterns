@@ -1,25 +1,34 @@
 package pl.com.pattern.less.EngApp;
 
 public abstract class Command {
+	/*	
+	 * this is a parent abstract class for all commands classes 
+*/
+	String list;
+	String engPlWord;
+	String txtEng;
+	String txtPl;
+	String subString1;
+	String subString2;
 
-	/*
-	 * this is a parent abstract class for all commands classes it made them to
-	 * implement method "runIt"
-	 */
+	int iterator;
 
-	// for delete command
-	public abstract boolean runIt(String a, String b);
+	public Command (String list, String engPlWord, String txtEng, String txtPl, String subString1,
+	String subString2, int iterator){
+		
+		this.list = list;
+		this.engPlWord = engPlWord;
+		this.txtEng = txtEng;
+		this.txtPl = txtPl;
+		this.subString1 = subString1;
+		this.subString2 = subString2;
+		this.iterator = iterator;
+	}
 
-	// for select command (back/next/check)
-	public abstract String runIt(String a, String b, int c);
-
-	// for insert command
-	public abstract boolean runIt(String a, String b, String c);
-
-	// for count command
-	public abstract int runIt(String a);
-
-	// for clearTable command (second parameter is never used)
-	public abstract boolean runIt(String a, boolean b);
-
+/*	
+	 * this is a parent abstract class for all commands classes 
+*/
+	
+	public abstract String runIt();
+	
 }

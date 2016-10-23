@@ -5,6 +5,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CommandCountWords extends Command {
+	
+
+
+
+	public CommandCountWords(String list, String engPlWord, String txtEng, String txtPl, String subString1,
+			String subString2, int iterator) {
+		super(list, engPlWord, txtEng, txtPl, subString1, subString2, iterator);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/*
 	 * This is a concrete command - for counting how many rows is in the table
 	 * 
@@ -13,10 +24,10 @@ public class CommandCountWords extends Command {
 
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
 
-	public int runIt(String tableName) {
+	public String runIt() {
 		try {
 			Statement stmt3 = sqlConnection.conn.createStatement();
-			ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) AS total FROM " + tableName);
+			ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) AS total FROM " + list);
 			while (rs3.next()) {
 				count = rs3.getInt("total");
 			}
@@ -29,33 +40,8 @@ public class CommandCountWords extends Command {
 			System.out.println("Oto volumen: " + count);
 
 		}
-		return count;
-	}
-
-	@Override
-	public boolean runIt(String a, String b) {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean runIt(String a, String b, String c) {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public String runIt(String a, String b, int c) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean runIt(String a, boolean b) {
-		// TODO Auto-generated method stub
-		return false;
+		String returnAsString = String.valueOf(count);
+		return returnAsString;
 	}
 
 }

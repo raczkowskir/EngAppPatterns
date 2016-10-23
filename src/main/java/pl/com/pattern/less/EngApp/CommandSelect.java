@@ -4,6 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CommandSelect extends Command {
+
+	public CommandSelect(String list, String engPlWord, String txtEng, String txtPl, String subString1,
+			String subString2, int iterator) {
+		super(list, engPlWord, txtEng, txtPl, subString1, subString2, iterator);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/*
 	 * This is a concrete command - for selecting a row from the table it is
 	 * used for functions: back, next, check
@@ -11,19 +19,19 @@ public class CommandSelect extends Command {
 
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
 
-	public String runIt(String tableName, String columnName, int wordId) {
+	public String runIt() {
 		String outcome = "";
-		System.out.println(columnName);
+		System.out.println(engPlWord);
 		try {
-			// ResultSet result = stat.executeQuery("SELECT * FROM "+tableName+"
-			// WHERE id_word='"+wordId+"'");
-			ResultSet result = sqlConnection.stat.executeQuery("SELECT * FROM " + tableName);
+			// ResultSet result = stat.executeQuery("SELECT * FROM "+list+"
+			// WHERE id_word='"+iterator+"'");
+			ResultSet result = sqlConnection.stat.executeQuery("SELECT * FROM " + list);
 
 			// the loop which help set cursor on current row
 			// - setting current row by using result.absolute(int rowNuber); is
 			// throwing: "java.sql.SQLException: ResultSet is TYPE_FORWARD_ONLY"
 
-			for (int i = 0; i < wordId; i++) {
+			for (int i = 0; i < iterator; i++) {
 				result.next();
 			}
 			String engWord;
@@ -34,7 +42,7 @@ public class CommandSelect extends Command {
 
 			System.out.println("result of getRow(): " + result.getRow());
 
-			if (columnName.equals("engWord")) {
+			if (engPlWord.equals("engWord")) {
 				outcome = engWord;
 			} else {
 				outcome = plWord;
@@ -44,30 +52,6 @@ public class CommandSelect extends Command {
 		}
 
 		return outcome;
-	}
-
-	@Override
-	public boolean runIt(String a, String b) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean runIt(String a, String b, String c) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public int runIt(String a) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean runIt(String a, boolean b) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
