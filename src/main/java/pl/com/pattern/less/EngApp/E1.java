@@ -16,7 +16,7 @@ public class E1 extends JFrame {
 	// This is a first view of the program which lets user to chose
 	// between view E2 - browsing words
 	// or view E2_b - adding entire lists to tables
-
+	//
 	private JPanel contentPane;
 	static final E1 frame1 = new E1();
 	static E2 frame2 = new E2();
