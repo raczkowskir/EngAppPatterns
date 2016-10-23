@@ -46,8 +46,7 @@ public class E2_b extends JFrame implements ItemListener {
 	// table for substrings input
 	String subString1[] = new String[5];
 	private State state = State.getInstance();
-	
-	
+
 	public E2_b() {
 		setTitle("EngApp");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,20 +63,9 @@ public class E2_b extends JFrame implements ItemListener {
 		contentPane.add(btnAddNewTable);
 		btnAddNewTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				System.out.println("przycisk dziala");
-				/*
-				 * String resultSelectENG =
-				 * E1.frame1.frame2.sqlForApp.selectWord("list2", "engWord", 2);
-				 * System.out.println(resultSelectENG);
-				 */
 				csvReader(fileName);
 				split();
 				lblInformation.setText("Words added!");
-
-				// E1.frame1.frame2.sqlForApp.insertWord("list2", "duck",
-				// "kaczka");
-
 			}
 		});
 		// btn toE1 ////////////////////////////////
@@ -203,20 +191,12 @@ public class E2_b extends JFrame implements ItemListener {
 			// System.out.println(subString1[0]);
 
 			subString1[1] = StrInput[i].substring(position1 + 1, StrInput[i].length());
-			// System.out.println(subString1[1]);
-			
 			state.subString1 = subString1[0];
 			state.subString2 = subString1[1];
-		//	System.out.println(state.subString1 +" "+ subString1[0]+" "+state.subString2 + subString1[1]);
-		//	E1.frame1.frame2.sqlForApp.insertWord(sqlTableName, subString1[0], subString1[1]);
-			
-		//	SQLforApp sqlForApp = SQLforApp.getInstance();
-		//	sqlForApp.insertWord(sqlTableName, subString1[0], subString1[1]);
-		//	Command commandInsert = new CommandInsert();
-		//	commandInsert.runIt(sqlTableName, subString1[0], subString1[1]);
-			SQLforApp sqlForApp = SQLforApp.getInstance();
-			sqlForApp.insertE2_b();
+			// the method which is adding words to table
+			Facade facade = Facade.getInstance();
+			facade.insertE2_b();
 		}
-		
+
 	}
 }

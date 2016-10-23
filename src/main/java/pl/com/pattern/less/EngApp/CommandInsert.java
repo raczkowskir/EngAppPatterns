@@ -3,50 +3,39 @@ package pl.com.pattern.less.EngApp;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CommandInsert extends Command{
+public class CommandInsert extends Command {
 	
+
+
+
+	public CommandInsert(String list, String engPlWord, String txtEng, String txtPl, String subString1,
+			String subString2, int iterator) {
+		super(list, engPlWord, txtEng, txtPl, subString1, subString2, iterator);
+		// TODO Auto-generated constructor stub
+	}
+
+
+	/*
+	 * This is a concrete command - for inserting a single row into a table
+	 * 
+	 */
 	private SQLconnection sqlConnection = SQLconnection.getInstance();
 
-	//problemy z liczeniem słow po zamknieciu programu licznik sie zeruje
-	//mimo ze slowa dalej znajduja sie w tabeli 
-	public boolean runIt(String tableName, String engWord, String plWord) {
+	public String runIt() {
 		try {
-			PreparedStatement prepStmt = sqlConnection.conn.prepareStatement("insert into " + tableName + " values (NULL, ?, ?);");
+			PreparedStatement prepStmt = sqlConnection.conn
+					.prepareStatement("insert into " + list + " values (NULL, ?, ?);");
 
-			prepStmt.setString(1, engWord);
-			prepStmt.setString(2, plWord);
+			prepStmt.setString(1, txtEng);
+			prepStmt.setString(2, txtPl);
 			prepStmt.execute();
 		} catch (SQLException e) {
 			System.err.println("Blad dodawaniu słowka");
 			e.printStackTrace();
-			return false;
+			return "false";
 		}
 
-		return true;
-	}
-	
-	@Override
-	public boolean runIt(String a, String b) {
-		// TODO Auto-generated method stub
-	return true;	
-	}
-
-	@Override
-	public String runIt(String a, String b, int c) {
-		// TODO Auto-generated method stub
-		return "";
-	}
-
-	@Override
-	public int runIt(String a) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean runIt(String a, boolean b) {
-		// TODO Auto-generated method stub
-		return false;
+		return "true";
 	}
 
 }
